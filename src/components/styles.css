@@ -1,0 +1,190 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+::-moz-selection {
+  background: #C6FF91;
+  text-shadow: none;
+}
+
+::selection {
+  background: #C6FF91;
+  text-shadow: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+body {
+  background: url(http://i.imgur.com/2BdQt0g.jpg);
+  margin: 0;
+  padding: 0;
+}
+
+.react-stickies-wrapper {
+  margin: 0 auto;
+}
+
+/* Note styles */
+.react-stickies-wrapper .note-wrap {
+  width: 235px;
+  min-height: 235px;
+  margin: 0 22px 44px 22px;
+  position: relative;
+  vertical-align: top;
+  display: inline-block;
+  font-family: Englebert, Arial;
+  color: #4b453c;
+  background: #F7E999;
+  line-height: 34px;
+  text-align: center;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1), 0 2px 4px 0 rgba(0,0,0,0.1);
+}
+.react-stickies-wrapper .note-wrap:before {
+  display: block;
+  content: "";
+  width: 130px;
+  height: 28px;
+  border-radius: 6px/18px 0;
+  position: absolute;
+}
+.react-stickies-wrapper .note-wrap.tape:before {
+  background: rgba(227, 200, 114, 0.4);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  top: -13px;
+  left: 50px;
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+  -o-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+}
+.react-stickies-wrapper .note-wrap .title {
+  color: #747474;
+  text-decoration: none;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  left: 0;
+}
+.react-stickies-wrapper .note-wrap .title:hover {
+  color: #000;
+}
+
+.react-stickies-wrapper .note {
+  background: #F7E999;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+.react-stickies-wrapper .close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.3;
+}
+.react-stickies-wrapper .close:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.react-stickies-wrapper .close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 16px;
+  width: 2px;
+  background-color: #333;
+}
+.react-stickies-wrapper .close:before {
+  transform: rotate(45deg);
+}
+.react-stickies-wrapper .close:after {
+  transform: rotate(-45deg);
+}
+
+.react-stickies-wrapper .add {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.3;
+  z-index: 2;
+}
+.react-stickies-wrapper .add:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.react-stickies-wrapper .add:before, .add:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 16px;
+  width: 2px;
+  background-color: #333;
+}
+.react-stickies-wrapper .add:before {
+  transform: rotate(0deg);
+}
+.react-stickies-wrapper .add:after {
+  transform: rotate(-90deg);
+}
+
+.react-stickies-wrapper .note-header {
+  position: relative;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+  height: 34px;
+}
+
+.react-stickies-wrapper .note-body {
+  padding: 10px;
+  font-size: 12px;
+  color: #747474;
+}
+
+.react-stickies-wrapper .note-footer {
+  color: #747474;
+  text-decoration: none;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  position: absolute;
+  bottom: 0px;
+  text-align: right;
+  width: 100%;
+  left: 0;
+  padding-right: 5px;
+  font-size: 11px;
+}
+
+.react-stickies-wrapper [contenteditable]:focus {
+    outline: 0px solid transparent;
+}
