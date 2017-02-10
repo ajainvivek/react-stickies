@@ -1,9 +1,17 @@
 # React-Stickies
 
-Sticky Notes for React Application
+Sticky Notes for React Application (DraftJS Based)
 
 ![Stickies](http://i.giphy.com/j4U83Mnt5BW7u.gif)
 > Screencast of stickies
+
+## Installation
+
+Install the React-Stickies [package](https://www.npmjs.org/package/react-stickies) package using [npm](https://www.npmjs.com/):
+
+```bash
+npm install react-stickies --save
+```
 
 ## Features
 
