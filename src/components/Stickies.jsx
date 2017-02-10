@@ -47,6 +47,10 @@ export default class extends Component {
         notes: nextProps.notes
       });
     }
+    this.setState({
+      colors: nextProps.colors || ['#FBE4BE', '#F7D1D1', '#E4FABC', '#CAE0FA'],
+      dateFormat: nextProps.dateFormat || 'lll'
+    });
   }
 
   generateRandomColors() {
@@ -180,7 +184,7 @@ export default class extends Component {
 
     return (
       <div className="react-stickies-wrapper clearfix">
-        {this.state.notes.map((note, index) => (
+        {this.state.notes.map(note => (
           <Draggable
             defaultPosition={note.defaultPosition}
             position={note.position}
@@ -201,7 +205,7 @@ export default class extends Component {
                 this.props.handleDragStop(event, data, note);
               }
             }}
-            key={index}
+            key={note.id}
           >
             <aside
               className={`note-wrap note ${this.props.tape ? 'tape' : ''}`}

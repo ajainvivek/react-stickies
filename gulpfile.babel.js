@@ -46,7 +46,7 @@ const libWebpackConfig = assign({}, sharedWebpackConfig, {
   output: {
     path: './lib',
     filename: 'react-stickies.js',
-    library: 'reactEve',
+    library: 'reactStickies',
     libraryTarget: 'commonjs2'
   },
   externals: [
@@ -163,7 +163,7 @@ gulp.task('copy-demo-to-root', () =>
 gulp.task('gh-pages-end', shell.task([
   'git add index.html demo.js *.css',
   'git commit --amend --no-edit',
-  'git push github gh-pages --force',
+  'git push --force',
   'git checkout master',
   'git stash apply'
 ]));

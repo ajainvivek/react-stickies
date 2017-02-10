@@ -1,6 +1,7 @@
 body {
-  background: #32425C;
+  background: #DB4C3F;
   color: #FFFFFF;
+  background-image: url(pictos.svg);
   font-family: sans-serif;
 }
 
@@ -8,13 +9,16 @@ body {
   font-size: 18px;
   margin: 40px auto;
   display: table;
-  color: #000;
+  color: #FFF;
+  border-bottom: 2px solid #fff;
 }
 
 .config {
-  color: #000;
+  color: #FFF;
   margin: 0 10px;
   font-size: 14px;
+  position: absolute;
+  bottom: 10px;
 }
 
 .config input {

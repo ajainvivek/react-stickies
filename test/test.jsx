@@ -2,17 +2,17 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import Eve from '../src/components/Eve';
+import Stickies from '../src/components/Stickies';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-describe('Grid components common features', function() {
+describe('Stickies components common features', function() {
   const grids = [
-    { name: 'Eve', component: Eve }
+    { name: 'Stickies', component: Stickies }
   ];
 
-  grids.forEach(function({ name, component: Grid }) {
+  grids.forEach(function({ name, component: Stickies }) {
 
     describe(`<${name} />`, function() {
 
