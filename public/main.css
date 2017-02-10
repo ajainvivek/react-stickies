@@ -1,0 +1,36 @@
+body {
+  background: #32425C;
+  color: #FFFFFF;
+  font-family: sans-serif;
+}
+
+.header {
+  font-size: 18px;
+  margin: 40px auto;
+  display: table;
+  color: #000;
+}
+
+.config {
+  color: #000;
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+.config input {
+  margin: 0 10px;
+}
+
+.output {
+  background: #fff;
+  overflow: auto;
+  height: 600px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.note-header {
+  color: green;
+  font-size: 14px;
+  padding-top: 20px;
+}

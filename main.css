@@ -1,0 +1,63 @@
+body {
+  background: #DB4C3F;
+  color: #FFFFFF;
+  background-image: url(pictos.svg);
+  font-family: sans-serif;
+}
+
+.header {
+  font-size: 18px;
+  margin: 40px auto;
+  display: table;
+  color: #FFF;
+  border-bottom: 2px solid #fff;
+}
+
+.config {
+  color: #FFF;
+  margin: 0 10px;
+  font-size: 14px;
+  position: absolute;
+  bottom: 10px;
+}
+
+.config input {
+  margin: 0 10px;
+}
+
+.output {
+  background: #fff;
+  overflow: auto;
+  height: 600px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.note-header {
+  color: green;
+  font-size: 14px;
+  padding-top: 20px;
+}
+
+.output {
+  color: #000;
+}
+
+
+#content {
+  width: 100%;
+}
+.react-grid-layout {
+  background: transparent;
+}
+.layoutJSON {
+  background: #ddd;
+  border: 1px solid black;
+  margin-top: 10px;
+  padding: 10px;
+}
+.columns {
+  -moz-columns: 120px;
+  -webkit-columns: 120px;
+  columns: 120px;
+}
