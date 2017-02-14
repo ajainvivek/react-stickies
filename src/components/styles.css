@@ -31,17 +31,16 @@
   height: 100%;
   width: 100%;
   position: relative;
-  overflow: auto;
 }
 
 /* Note styles */
 .react-stickies-wrapper .note-wrap {
   width: 235px;
   min-height: 235px;
-  margin: 0 22px 44px 22px;
   position: relative;
   vertical-align: top;
   display: inline-block;
+  margin: 10px;
   font-family: Englebert, Arial;
   color: #4b453c;
   background: #F7E999;

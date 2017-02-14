@@ -103,5 +103,5 @@ If you have a feature request, please add it as an issue or make a pull request.
 - [x] Basic Notes with CRUD
 - [x] Draggable Notes
 - [x] Update Notes state
-- [ ] Fix position note position handling
+- [ ] Notes position handling
 - [ ] Resizable handles on corners

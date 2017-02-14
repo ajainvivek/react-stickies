@@ -43,10 +43,12 @@ export default class extends Component {
     let bounds = '';
     if (this.state.showBound) {
       wrapperStyle = {
-        height: '500px',
-        width: '500px',
+        height: '700px',
+        width: '700px',
         background: 'rgba(0, 0, 0, 0.2)',
-        border: '2px solid #fff'
+        border: '2px solid #fff',
+        overflow: 'auto',
+        padding: '10px'
       };
       bounds = 'parent';
     }
