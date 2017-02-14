@@ -1,7 +1,7 @@
 {
   "name": "react-stickies",
-  "version": "0.0.1",
-  "description": "Stickies for React Application",
+  "version": "0.0.2",
+  "description": "Sticky Notes for React Application",
   "keywords": [
     "react",
     "react-component",

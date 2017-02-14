@@ -4,6 +4,4 @@ export {
   Stickies
 };
 
-export default {
-  Stickies
-};
+export default Stickies;

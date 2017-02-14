@@ -19,7 +19,8 @@ export default class extends Component {
       showFooter: true,
       output: '',
       colors: ['#FFFFFF'],
-      showCustomColors: false
+      showCustomColors: false,
+      showBound: false
     };
     this.toggleValue = this.toggleValue.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -38,6 +39,17 @@ export default class extends Component {
   }
 
   render() {
+    let wrapperStyle = {};
+    let bounds = '';
+    if (this.state.showBound) {
+      wrapperStyle = {
+        height: '500px',
+        width: '500px',
+        background: 'rgba(0, 0, 0, 0.2)',
+        border: '2px solid #fff'
+      };
+      bounds = 'parent';
+    }
     return (
       <div>
         <div className="header">
@@ -51,6 +63,8 @@ export default class extends Component {
           title={this.state.showTitle}
           footer={this.state.showFooter}
           onChange={this.onChange}
+          wrapperStyle={wrapperStyle}
+          bounds={bounds}
         />
         <div className="config">
           <form>
@@ -59,6 +73,7 @@ export default class extends Component {
             <input type="radio" name="showOutput" value="show_output" checked={this.state.showOutput} onClick={this.toggleValue} />Show Output
             <input type="radio" name="showTitle" value="show_title" checked={this.state.showTitle} onClick={this.toggleValue} />Show Title
             <input type="radio" name="showFooter" value="show_footer" checked={this.state.showFooter} onClick={this.toggleValue} />Show Footer
+            <input type="radio" name="showBound" value="show_bound" checked={this.state.showBound} onClick={this.toggleValue} />Bound Drag
           </form>
           <div className="output" style={{ display: this.state.showOutput ? 'block' : 'none' }}>
             <label className="note-header">Output JSON</label>

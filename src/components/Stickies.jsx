@@ -171,6 +171,7 @@ export default class extends Component {
         transform: note.degree
       }, this.props.noteStyle || {})
     );
+    const wrapperStyle = this.props.wrapperStyle || {};
     const noteHeaderStyle = Object.assign({}, {
       display: this.props.header === false ? 'none' : 'block'
     }, this.props.noteHeaderStyle || {});
@@ -183,7 +184,7 @@ export default class extends Component {
     }, this.props.noteFooterStyle || {});
 
     return (
-      <div className="react-stickies-wrapper clearfix">
+      <div className="react-stickies-wrapper clearfix" style={wrapperStyle}>
         {this.state.notes.map(note => (
           <Draggable
             defaultPosition={note.defaultPosition}
@@ -205,6 +206,7 @@ export default class extends Component {
                 this.props.handleDragStop(event, data, note);
               }
             }}
+            bounds={this.props.bounds}
             key={note.id}
           >
             <aside

@@ -13,6 +13,12 @@ Install the React-Stickies [package](https://www.npmjs.org/package/react-stickie
 npm install react-stickies --save
 ```
 
+Make sure you have included draftjs styles in your app.
+
+```html
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/draft-js/0.7.0/Draft.min.css">
+```
+
 ## Features
 
 * Pure React Sticky Notes
@@ -21,6 +27,7 @@ npm install react-stickies --save
 * Configurable Sticky Colors
 * Last Updated TimeStamp
 * Configurable Tape
+* Configurable Drag & Drop Zone
 
 ## Usage
 
@@ -60,6 +67,10 @@ footer: ?Boolean = {true|false},
 // Configurable custom sticky notes colors
 colors: ?Array = [HexCodes],
 
+// Drag Bound Region to parent default is drag & drop anywhere
+// Edit wrapperStyle accordingly to fit to parent bound region
+bounds: ?String = "parent"
+
 //
 // Callbacks
 //
@@ -67,6 +78,18 @@ colors: ?Array = [HexCodes],
 // Callback so you can save the notes.
 // Calls back when note is updated
 onChange: (Array | notes )
+
+//
+// Styles
+//
+
+// Styles which could be modified
+wrapperStyle: (Object | {} )
+noteStyle: (Object | {} )
+noteStyle: (Object | {} )
+noteHeaderStyle: (Object | {} )
+noteBodyStyle: (Object | {} )
+noteFooterStyle: (Object | {} )
 
 ```
 
@@ -80,4 +103,5 @@ If you have a feature request, please add it as an issue or make a pull request.
 - [x] Basic Notes with CRUD
 - [x] Draggable Notes
 - [x] Update Notes state
+- [ ] Fix position note position handling
 - [ ] Resizable handles on corners
