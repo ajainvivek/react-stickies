@@ -19,12 +19,28 @@ function guid() {
     s4() + '-' + s4() + s4() + s4();
 }
 
+function tranformEditorState(notes) {
+  const data = notes.map((note) => {
+    note.editorState = EditorState.createWithContent(note.contentState);
+    return note;
+  });
+  return data;
+}
+
+function transformContentState(notes) {
+  const data = notes.map((note) => {
+    note.contentState = note.editorState.getCurrentContent();
+    return note;
+  });
+  return data;
+}
+
 export default class extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      notes: [],
+      notes: props.notes ? tranformEditorState(props.notes) : [],
       colors: props.colors || ['#FBE4BE', '#F7D1D1', '#E4FABC', '#CAE0FA'],
       dateFormat: props.dateFormat || 'lll'
     };
@@ -44,7 +60,7 @@ export default class extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.notes && nextProps.notes.length) {
       this.setState({
-        notes: nextProps.notes
+        notes: tranformEditorState(nextProps.notes)
       });
     }
     this.setState({
@@ -115,7 +131,7 @@ export default class extends Component {
       notes
     }, () => {
       if (typeof this.props.onChange === 'function') {
-        this.props.onChange(this.state.notes);
+        this.props.onChange(transformContentState(this.state.notes));
       }
     });
   }
@@ -182,7 +198,6 @@ export default class extends Component {
     const noteFooterStyle = Object.assign({}, {
       display: this.props.footer === false ? 'none' : 'block'
     }, this.props.noteFooterStyle || {});
-
     return (
       <div className="react-stickies-wrapper clearfix" style={wrapperStyle}>
         {this.state.notes.map(note => (

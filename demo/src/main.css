@@ -38,3 +38,7 @@ body {
   font-size: 14px;
   padding-top: 20px;
 }
+
+.output {
+  color: #000;
+}
