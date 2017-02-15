@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import Draggable from 'react-draggable';
 import moment from 'moment';
 import ContentEditable from './ContentEditable';
@@ -21,7 +21,7 @@ function guid() {
 
 function tranformEditorState(notes) {
   const data = notes.map((note) => {
-    note.editorState = EditorState.createWithContent(note.contentState);
+    note.editorState = convertToRaw(EditorState.createWithContent(note.contentState));
     return note;
   });
   return data;
@@ -29,7 +29,7 @@ function tranformEditorState(notes) {
 
 function transformContentState(notes) {
   const data = notes.map((note) => {
-    note.contentState = note.editorState.getCurrentContent();
+    note.contentState = convertFromRaw(note.editorState.getCurrentContent());
     return note;
   });
   return data;
