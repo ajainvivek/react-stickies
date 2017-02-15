@@ -42,7 +42,7 @@ export default class extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.notes && this.props.notes.length) {
+    if (nextProps.notes && nextProps.notes.length) {
       this.setState({
         notes: nextProps.notes
       });
