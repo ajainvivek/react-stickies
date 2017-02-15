@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Editor, EditorState, convertFromRaw, convertToRaw } from 'draft-js';
+import { Editor, EditorState, ContentState } from 'draft-js';
 import Draggable from 'react-draggable';
 import moment from 'moment';
 import ContentEditable from './ContentEditable';
@@ -19,17 +19,28 @@ function guid() {
     s4() + '-' + s4() + s4() + s4();
 }
 
+/**
+* @method: tranformEditorState
+* @desc: Tranforms the text to editor state
+**/
 function tranformEditorState(notes) {
-  const data = notes.map((note) => {
-    note.editorState = convertToRaw(EditorState.createWithContent(note.contentState));
+  const notesData = notes.default || notes;
+  const data = notesData.map((note) => {
+    const text = note.default ? note.default.text : note.text || '';
+    note.editorState = note.editorState || EditorState.createWithContent(ContentState.createFromText(text));
     return note;
   });
   return data;
 }
 
+/**
+* @method: transformContentState
+* @desc: Tranforms editor state to text content
+**/
 function transformContentState(notes) {
-  const data = notes.map((note) => {
-    note.contentState = convertFromRaw(note.editorState.getCurrentContent());
+  const clonedNotes = Object.assign([], notes);
+  const data = clonedNotes.map((note) => {
+    note.text = note.editorState.getCurrentContent().getPlainText();
     return note;
   });
   return data;
@@ -127,13 +138,9 @@ export default class extends Component {
         note.timeStamp = moment().format(dateFormat);
       }
     });
-    this.setState({
-      notes
-    }, () => {
-      if (typeof this.props.onChange === 'function') {
-        this.props.onChange(transformContentState(this.state.notes));
-      }
-    });
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(transformContentState(this.state.notes));
+    }
   }
 
   createBlankNote() {
@@ -200,7 +207,7 @@ export default class extends Component {
     }, this.props.noteFooterStyle || {});
     return (
       <div className="react-stickies-wrapper clearfix" style={wrapperStyle}>
-        {this.state.notes.map(note => (
+        {this.state.notes.map((note, index) => (
           <Draggable
             defaultPosition={note.defaultPosition}
             position={note.position}
