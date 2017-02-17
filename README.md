@@ -94,7 +94,7 @@ bounds: ?String = "parent"
 
 // Callback so you can save the notes.
 // Calls back when note is updated
-onChange: (Array | notes )
+onChange: (Array | notes, String | state (add/update/delete) )
 onTitleChange: (String | text, Object | note)
 onAdd: (Object | note)
 onDelete: (Object | note)
