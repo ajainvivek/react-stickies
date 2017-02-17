@@ -165,7 +165,9 @@ export default class extends Component {
     }, () => {
       if (typeof this.props.onChange === 'function') {
         this.props.onChange(this.state.notes, 'add');
-        this.props.onAdd(blankNote);
+        if (typeof this.props.onAdd === 'function') {
+          this.props.onAdd(blankNote);
+        }
       }
     });
   }
@@ -182,7 +184,9 @@ export default class extends Component {
     }, () => {
       if (typeof this.props.onChange === 'function') {
         this.props.onChange(this.state.notes, 'delete');
-        this.props.onDelete(currentNote);
+        if (typeof this.props.onDelete === 'function') {
+          this.props.onDelete(currentNote);
+        }
       }
     });
   }
