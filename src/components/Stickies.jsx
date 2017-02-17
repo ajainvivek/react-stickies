@@ -126,6 +126,10 @@ export default class extends Component {
     });
     this.setState({
       notes
+    }, () => {
+      if (this.props.onTitleChange) {
+        this.props.onTitleChange(html, currentNote);
+      }
     });
   }
 
@@ -139,7 +143,7 @@ export default class extends Component {
       }
     });
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(transformContentState(this.state.notes));
+      this.props.onChange(transformContentState(this.state.notes), 'update');
     }
   }
 
@@ -160,7 +164,8 @@ export default class extends Component {
       notes
     }, () => {
       if (typeof this.props.onChange === 'function') {
-        this.props.onChange(this.state.notes);
+        this.props.onChange(this.state.notes, 'add');
+        this.props.onAdd(blankNote);
       }
     });
   }
@@ -176,7 +181,8 @@ export default class extends Component {
       notes
     }, () => {
       if (typeof this.props.onChange === 'function') {
-        this.props.onChange(this.state.notes);
+        this.props.onChange(this.state.notes, 'delete');
+        this.props.onDelete(currentNote);
       }
     });
   }
