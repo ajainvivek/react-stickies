@@ -22,7 +22,6 @@ export default class extends Component {
       output: '',
       colors: ['#FFFFFF'],
       showCustomColors: false,
-      showBound: false,
       showMock: false
     };
     this.toggleValue = this.toggleValue.bind(this);
@@ -55,7 +54,6 @@ export default class extends Component {
 
   render() {
     let wrapperStyle = {};
-    let bounds = '';
     if (this.state.showBound) {
       wrapperStyle = {
         height: '700px',
@@ -65,7 +63,6 @@ export default class extends Component {
         overflow: 'auto',
         padding: '10px'
       };
-      bounds = 'parent';
     }
     return (
       <div>
@@ -89,7 +86,6 @@ export default class extends Component {
             <input type="radio" name="showOutput" value="show_output" checked={this.state.showOutput} onClick={this.toggleValue} />Show Output
             <input type="radio" name="showTitle" value="show_title" checked={this.state.showTitle} onClick={this.toggleValue} />Show Title
             <input type="radio" name="showFooter" value="show_footer" checked={this.state.showFooter} onClick={this.toggleValue} />Show Footer
-            <input type="radio" name="showBound" value="show_bound" checked={this.state.showBound} onClick={this.toggleValue} />Bound Drag & Drop Region
             <input type="radio" name="showMock" value="show_mock" checked={this.state.showMock} onClick={this.fetchMock} />Load Mock Data
           </form>
           <div className="output" style={{ display: this.state.showOutput ? 'block' : 'none' }}>

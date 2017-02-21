@@ -142,15 +142,16 @@ export default class extends Component {
   createBlankNote() {
     const dateFormat = this.state.dateFormat;
     const grid = this.props.grid || {};
+    const uid = guid();
     const note = {
       grid: {
-        i: `n${this.state.newCounter}`,
+        i: `${uid}`,
         x: this.state.notes.length * 2 % (this.state.cols || 12),
         y: Infinity, // puts it at the bottom
         w: grid.w || 2,
         h: grid.h || 2
       },
-      id: guid(),
+      id: uid,
       editorState: EditorState.createEmpty(),
       title: 'Title',
       color: this.generateRandomColors(),
@@ -164,7 +165,7 @@ export default class extends Component {
       // Increment the counter to ensure key is always unique.
       newCounter: this.state.newCounter + 1
     });
-    if (typeof this.props.onDelete === 'function') {
+    if (typeof this.props.onAdd === 'function') {
       this.props.onAdd(note);
     }
   }
