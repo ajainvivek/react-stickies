@@ -15,7 +15,7 @@ export default class extends Component {
 
     this.state = {
       notes: [],
-      showTape: true,
+      showTape: false,
       showOutput: false,
       showTitle: true,
       showFooter: true,
@@ -81,7 +81,6 @@ export default class extends Component {
           footer={this.state.showFooter}
           onChange={this.onChange}
           wrapperStyle={wrapperStyle}
-          bounds={bounds}
         />
         <div className="config">
           <form>

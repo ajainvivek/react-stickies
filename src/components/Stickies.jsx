@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Editor, EditorState, ContentState } from 'draft-js';
-import Draggable from 'react-draggable';
 import moment from 'moment';
 import ContentEditable from './ContentEditable';
 import './styles.css';
+
+const WidthProvider = require('react-grid-layout').WidthProvider;
+let ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
+
+ResponsiveReactGridLayout = WidthProvider(ResponsiveReactGridLayout);
 
 /**
 * @method: guid
@@ -47,21 +51,19 @@ function transformContentState(notes) {
 }
 
 export default class extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
+      newCounter: 0,
       notes: props.notes ? tranformEditorState(props.notes) : [],
       colors: props.colors || ['#FBE4BE', '#F7D1D1', '#E4FABC', '#CAE0FA'],
       dateFormat: props.dateFormat || 'lll'
     };
-    this.onChange = this.onChange.bind(this);
     this.createBlankNote = this.createBlankNote.bind(this);
-    this.handleDragStop = this.handleDragStop.bind(this);
-    this.handleDragStart = this.handleDragStart.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.renderNote = this.renderNote.bind(this);
+    this.onLayoutChange = this.onLayoutChange.bind(this);
+    this.onBreakpointChange = this.onBreakpointChange.bind(this);
   }
-
   componentDidMount() {
     if (this.props.notes && !this.props.notes.length) {
       this.createBlankNote();
@@ -87,34 +89,6 @@ export default class extends Component {
 
   generateRandomDegree(max, min) {
     return `${Math.floor(Math.random() * (max - min + 1)) + min}deg`;
-  }
-
-  handleDragStart(event, data, currentNote) {
-    const notes = this.state.notes;
-    notes.forEach((note) => {
-      if (currentNote.id === note.id) {
-        note.contentEditable = false;
-      }
-    });
-    this.setState({
-      notes
-    });
-  }
-
-  handleDragStop(event, data, currentNote) {
-    const notes = this.state.notes;
-    notes.forEach((note) => {
-      if (currentNote.id === note.id) {
-        note.position = {
-          x: data.x,
-          y: data.y
-        };
-        note.contentEditable = true;
-      }
-    });
-    this.setState({
-      notes
-    });
   }
 
   handleTitleChange(html, currentNote) {
@@ -147,31 +121,6 @@ export default class extends Component {
     }
   }
 
-  createBlankNote() {
-    const dateFormat = this.state.dateFormat;
-    const blankNote = {
-      id: guid(),
-      editorState: EditorState.createEmpty(),
-      title: 'Title',
-      color: this.generateRandomColors(),
-      degree: this.generateRandomDegree(-2, 2),
-      timeStamp: moment().format(dateFormat),
-      contentEditable: true
-    };
-    const notes = this.state.notes;
-    notes.push(blankNote);
-    this.setState({
-      notes
-    }, () => {
-      if (typeof this.props.onChange === 'function') {
-        this.props.onChange(this.state.notes, 'add');
-        if (typeof this.props.onAdd === 'function') {
-          this.props.onAdd(blankNote);
-        }
-      }
-    });
-  }
-
   deleteNote(currentNote) {
     const notes = this.state.notes;
     notes.forEach((note, index) => {
@@ -190,21 +139,58 @@ export default class extends Component {
       }
     });
   }
-
-  render() {
+  createBlankNote() {
+    const dateFormat = this.state.dateFormat;
+    const grid = this.props.grid || {};
+    const note = {
+      grid: {
+        i: `n${this.state.newCounter}`,
+        x: this.state.notes.length * 2 % (this.state.cols || 12),
+        y: Infinity, // puts it at the bottom
+        w: grid.w || 2,
+        h: grid.h || 2
+      },
+      id: guid(),
+      editorState: EditorState.createEmpty(),
+      title: 'Title',
+      color: this.generateRandomColors(),
+      degree: this.generateRandomDegree(-2, 2),
+      timeStamp: moment().format(dateFormat),
+      contentEditable: true
+    };
+    this.setState({
+      // Add a new item. It must have a unique key!
+      notes: this.state.notes.concat(note),
+      // Increment the counter to ensure key is always unique.
+      newCounter: this.state.newCounter + 1
+    });
+    if (typeof this.props.onDelete === 'function') {
+      this.props.onAdd(note);
+    }
+  }
+  onLayoutChange(layout) {
+    if (typeof this.props.onLayoutChange === 'function') {
+      this.props.onLayoutChange(layout);
+    }
+    this.setState({ layout });
+  }
+  onBreakpointChange(breakpoint, cols) {
+    this.setState({
+      breakpoint,
+      cols
+    });
+  }
+  renderNote(note) {
     const closeStyle = Object.assign({}, {
       display: (this.state.notes.length === 1) ? 'none' : 'block'
     }, this.props.closeStyle || {});
     const addStyle = this.props.addStyle || {};
     const closeIcon = this.props.closeIcon || '';
     const addIcon = this.props.addIcon || '';
-    const noteStyle = note => (
-      Object.assign({}, {
-        background: note.color,
-        transform: note.degree
-      }, this.props.noteStyle || {})
-    );
-    const wrapperStyle = this.props.wrapperStyle || {};
+    const noteStyle = Object.assign({}, {
+      background: note.color,
+      transform: note.degree
+    }, this.props.noteStyle || {});
     const noteHeaderStyle = Object.assign({}, {
       display: this.props.header === false ? 'none' : 'block'
     }, this.props.noteHeaderStyle || {});
@@ -215,76 +201,74 @@ export default class extends Component {
     const noteFooterStyle = Object.assign({}, {
       display: this.props.footer === false ? 'none' : 'block'
     }, this.props.noteFooterStyle || {});
+    const i = note.grid.add ? '+' : note.grid.i;
     return (
-      <div className="react-stickies-wrapper clearfix" style={wrapperStyle}>
-        {this.state.notes.map((note, index) => (
-          <Draggable
-            defaultPosition={note.defaultPosition}
-            position={note.position}
-            onStart={(event, data) => {
-              this.handleDragStart(event, data, note);
-              if (typeof this.props.handleDragStart === 'function') {
-                this.props.handleDragStart(event, data, note);
-              }
-            }}
-            onDrag={(event, data) => {
-              if (typeof this.props.handleDragging === 'function') {
-                this.props.handleDragging(event, data, note);
-              }
-            }}
-            onStop={(event, data) => {
-              this.handleDragStop(event, data, note);
-              if (typeof this.props.handleDragStop === 'function') {
-                this.props.handleDragStop(event, data, note);
-              }
-            }}
-            bounds={this.props.bounds}
-            key={note.id}
-          >
-            <aside
-              className={`note-wrap note ${this.props.tape ? 'tape' : ''}`}
-              style={noteStyle(note)}
+      <div key={i} data-grid={note.grid}>
+        <aside
+          className={`note-wrap note ${this.props.tape ? 'tape' : ''}`}
+          style={noteStyle}
+        >
+          <div className="note-header" style={noteHeaderStyle}>
+            <div
+              className={`${addIcon ? '' : 'add'}`}
+              onClick={this.createBlankNote}
+              style={addStyle}
             >
-              <div className="note-header" style={noteHeaderStyle}>
-                <div
-                  className={`${addIcon ? '' : 'add'}`}
-                  onClick={this.createBlankNote}
-                  style={addStyle}
-                >
-                  {addIcon}
-                </div>
-                <div className="title" style={noteTitleStyle}>
-                  <ContentEditable
-                    html={note.title}
-                    onChange={html => this.handleTitleChange(html, note)}
-                  />
-                </div>
-                <div
-                  className={`${closeIcon ? '' : 'close'}`}
-                  style={closeStyle}
-                  onClick={() => this.deleteNote(note)}
-                >
-                  {closeIcon}
-                </div>
-              </div>
-              <div className="note-body" style={noteBodyStyle}>
-                <Editor
-                  editorState={note.editorState}
-                  onChange={editorState => this.onChange(editorState, note)}
-                  placeholder="Add your notes..."
-                />
-              </div>
-              <div
-                className="note-footer"
-                style={noteFooterStyle}
-              >
-                {note.timeStamp}
-              </div>
-            </aside>
-          </Draggable>
-        ))}
+              {addIcon}
+            </div>
+            <div className="title" style={noteTitleStyle}>
+              <ContentEditable
+                html={note.title}
+                onChange={html => this.handleTitleChange(html, note)}
+              />
+            </div>
+            <div
+              className={`${closeIcon ? '' : 'close'}`}
+              style={closeStyle}
+              onClick={() => this.deleteNote(note)}
+            >
+              {closeIcon}
+            </div>
+          </div>
+          <div className="note-body" style={noteBodyStyle}>
+            <Editor
+              editorState={note.editorState}
+              onChange={editorState => this.onChange(editorState, note)}
+              placeholder="Add your notes..."
+            />
+          </div>
+          <div
+            className="note-footer"
+            style={noteFooterStyle}
+          >
+            {note.timeStamp}
+          </div>
+        </aside>
       </div>
     );
   }
-
+  render() {
+    const gridProps = this.props.grid || {};
+    const grid = {
+      className: 'layout',
+      cols: gridProps.cols || { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+      rowHeight: gridProps.rowHeight || 100,
+      isDraggable: gridProps.isDraggable === undefined ? true : gridProps.isDraggable,
+      isResizable: gridProps.isResizable === undefined ? true : gridProps.isResizable,
+      useCSSTransforms: gridProps.useCSSTransforms === undefined ? true : gridProps.useCSSTransforms,
+      margin: gridProps.margin
+    };
+    const wrapperStyle = this.props.wrapperStyle || {};
+    return (
+      <div className="react-stickies-wrapper clearfix" style={wrapperStyle}>
+        <ResponsiveReactGridLayout
+          onLayoutChange={this.onLayoutChange}
+          onBreakpointChange={this.onBreakpointChange}
+          {...grid}
+        >
+          {this.state.notes.map(this.renderNote)}
+        </ResponsiveReactGridLayout>
+      </div>
+    );
+  }
 }

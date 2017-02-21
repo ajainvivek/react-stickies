@@ -42,3 +42,22 @@ body {
 .output {
   color: #000;
 }
+
+
+#content {
+  width: 100%;
+}
+.react-grid-layout {
+  background: transparent;
+}
+.layoutJSON {
+  background: #ddd;
+  border: 1px solid black;
+  margin-top: 10px;
+  padding: 10px;
+}
+.columns {
+  -moz-columns: 120px;
+  -webkit-columns: 120px;
+  columns: 120px;
+}

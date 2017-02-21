@@ -22,12 +22,11 @@ Make sure you have included draftjs styles in your app.
 ## Features
 
 * Pure React Sticky Notes
-* Draggable Stickies
+* Draggable & Resizable Stickies
 * Inline Content Editable
 * Configurable Sticky Colors
 * Last Updated TimeStamp
 * Configurable Tape
-* Configurable Drag & Drop Zone
 
 ## Usage
 
@@ -84,9 +83,53 @@ footer: ?Boolean = {true|false},
 // Configurable custom sticky notes colors
 colors: ?Array = [HexCodes],
 
-// Drag Bound Region to parent default is drag & drop anywhere
-// Edit wrapperStyle accordingly to fit to parent bound region
-bounds: ?String = "parent"
+// Grid configuration
+grid: ?Object = {
+  // These are all in grid units, not pixels
+  w: number,
+  h: number,
+  minW: ?number = 0,
+  maxW: ?number = Infinity,
+  minH: ?number = 0,
+  maxH: ?number = Infinity,
+
+  // Rows have a static height, but you can change this based on breakpoints
+  // if you like.
+  rowHeight: ?number = 150,
+
+  // {name: pxVal}, e.g. {lg: 1200, md: 996, sm: 768, xs: 480}
+  // Breakpoint names are arbitrary but must match in the cols and layouts objects.
+  breakpoints: ?Object = {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0},
+
+  // # of cols. This is a breakpoint -> cols map, e.g. {lg: 12, md: 10, ...}
+  cols: ?Object = {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2},
+
+  // layouts is an object mapping breakpoints to layouts.
+  // e.g. {lg: Layout, md: Layout, ...}
+  layouts: {[key: $Keys<breakpoints>]: Layout}
+
+  // Layout is an array of object with the format:
+  // {x: number, y: number, w: number, h: number}
+  // The index into the layout must match the key used on each item component.
+  // If you choose to use custom keys, you can specify that key in the layout
+  // array objects like so:
+  // {i: string, x: number, y: number, w: number, h: number}
+  layout: ?array = null, // If not provided, use data-grid props on children
+  //
+  // Flags
+  //
+  isDraggable: ?boolean = true,
+  isResizable: ?boolean = true,
+  // Uses CSS3 translate() instead of position top/left.
+  // This makes about 6x faster paint performance
+  useCSSTransforms: ?boolean = true,
+
+  // Callback so you can save the layout.
+  // Calls back with (currentLayout) after every drag or resize stop.
+  onLayoutChange: (layout: Layout) => void,
+
+}
+
 
 //
 // Callbacks
@@ -123,5 +166,6 @@ If you have a feature request, please add it as an issue or make a pull request.
 - [x] Basic Notes with CRUD
 - [x] Draggable Notes
 - [x] Update Notes state
-- [ ] Notes position handling
-- [ ] Resizable handles on corners
+- [x] Notes position handling
+- [x] Resizable handles on corners
+- [ ] ---- 
