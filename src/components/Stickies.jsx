@@ -173,7 +173,7 @@ export default class extends Component {
     const notes = this.state.notes;
     notes.forEach((note) => {
       layout.forEach((grid) => {
-        if (grid.id === note.id) {
+        if (grid.i === note.id) {
           note.grid = grid;
         }
       });
