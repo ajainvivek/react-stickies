@@ -170,10 +170,24 @@ export default class extends Component {
     }
   }
   onLayoutChange(layout) {
-    if (typeof this.props.onLayoutChange === 'function') {
-      this.props.onLayoutChange(layout);
-    }
-    this.setState({ layout });
+    const notes = this.state.notes;
+    notes.forEach((note) => {
+      layout.forEach((grid) => {
+        if (grid.id === note.id) {
+          note.grid = grid;
+        }
+      });
+    });
+    this.setState({
+      notes
+    }, () => {
+      if (typeof this.props.onChange === 'function') {
+        this.props.onChange(this.state.notes, 'layout');
+        if (typeof this.props.onLayoutChange === 'function') {
+          this.props.onLayoutChange(layout);
+        }
+      }
+    });
   }
   onBreakpointChange(breakpoint, cols) {
     this.setState({
