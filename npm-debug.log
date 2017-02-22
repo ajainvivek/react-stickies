@@ -1,0 +1,158 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@3.10.10
+3 info using node@v7.3.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/ajainvivek/Dev/Experiments/react-stickies',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/ajainvivek/.npm/react-stickies/0.0.12/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/ajainvivek/.npm correctMkdir not in flight; initializing
+10 info lifecycle react-stickies@0.0.12~prepublish: react-stickies@0.0.12
+11 silly lifecycle react-stickies@0.0.12~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/ajainvivek/.npm/react-stickies/0.0.12/package.tgz',
+12 verbose tar pack   '/Users/ajainvivek/Dev/Experiments/react-stickies' ]
+13 verbose tarball /Users/ajainvivek/.npm/react-stickies/0.0.12/package.tgz
+14 verbose folder /Users/ajainvivek/Dev/Experiments/react-stickies
+15 verbose addLocalTarball adding from inside cache /Users/ajainvivek/.npm/react-stickies/0.0.12/package.tgz
+16 verbose correctMkdir /Users/ajainvivek/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd react-stickies@0.0.12
+18 verbose afterAdd /Users/ajainvivek/.npm/react-stickies/0.0.12/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/ajainvivek/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/ajainvivek/.npm/react-stickies/0.0.12/package/package.json written
+21 silly publish { name: 'react-stickies',
+21 silly publish   version: '0.0.12',
+21 silly publish   description: 'Sticky Notes for React Application',
+21 silly publish   keywords: [ 'react', 'react-component', 'stickies' ],
+21 silly publish   main: 'lib/react-stickies.js',
+21 silly publish   scripts:
+21 silly publish    { test: 'mocha -R spec --compilers jsx:babel-register test/*.jsx',
+21 silly publish      deploy: 'gh-pages -d demo',
+21 silly publish      start: 'gulp' },
+21 silly publish   author: { name: 'Ajain Vivek' },
+21 silly publish   license: 'MIT',
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/ajainvivek/react-stickies.git' },
+21 silly publish   devDependencies:
+21 silly publish    { 'autoprefixer-loader': '^3.2.0',
+21 silly publish      'babel-core': '^6.17.0',
+21 silly publish      'babel-eslint': '^7.0.0',
+21 silly publish      'babel-loader': '^6.2.5',
+21 silly publish      'babel-preset-es2015': '^6.16.0',
+21 silly publish      'babel-preset-react': '^6.16.0',
+21 silly publish      'babel-preset-stage-2': '^6.17.0',
+21 silly publish      'browser-sync': '^2.17.1',
+21 silly publish      chai: '^3.5.0',
+21 silly publish      'chai-enzyme': '^0.5.2',
+21 silly publish      'css-loader': '^0.26.1',
+21 silly publish      enzyme: '^2.4.1',
+21 silly publish      eslint: '^3.7.1',
+21 silly publish      'eslint-config-airbnb': '^11.0.0',
+21 silly publish      'eslint-plugin-import': '^1.15.0',
+21 silly publish      'eslint-plugin-jsx-a11y': '^2.2.3',
+21 silly publish      'eslint-plugin-react': '^6.3.0',
+21 silly publish      'extract-text-webpack-plugin': '^1.0.1',
+21 silly publish      findup: '^0.1.5',
+21 silly publish      'gh-pages': '^0.12.0',
+21 silly publish      ghooks: '^1.3.2',
+21 silly publish      'git-prepush-hook': '^1.0.2',
+21 silly publish      gulp: '^3.9.1',
+21 silly publish      'gulp-eslint': '^3.0.1',
+21 silly publish      'gulp-filter': '^4.0.0',
+21 silly publish      'gulp-rename': '^1.2.2',
+21 silly publish      'gulp-shell': '^0.5.2',
+21 silly publish      'gulp-util': '^3.0.7',
+21 silly publish      'lodash.assign': '^4.2.0',
+21 silly publish      'lodash.camelcase': '^4.3.0',
+21 silly publish      'lodash.isequalwith': '^4.4.0',
+21 silly publish      'lodash.shuffle': '^4.2.0',
+21 silly publish      mocha: '^3.1.0',
+21 silly publish      'node-notifier': '^4.6.1',
+21 silly publish      'rc-slider': '^5.1.1',
+21 silly publish      react: '^15.3.2',
+21 silly publish      'react-dom': '^15.3.2',
+21 silly publish      'react-radio-group': '^3.0.1',
+21 silly publish      'run-sequence': '^1.2.2',
+21 silly publish      'style-loader': '^0.13.1',
+21 silly publish      webpack: '^1.13.2' },
+21 silly publish   dependencies:
+21 silly publish    { 'draft-js': '^0.10.0',
+21 silly publish      moment: '^2.17.1',
+21 silly publish      'react-grid-layout': '^0.14.0' },
+21 silly publish   peerDependencies: { react: '^15.3.2', 'react-dom': '^15.3.2' },
+21 silly publish   'pre-push': [],
+21 silly publish   readme: '# React-Stickies\n\nSticky Notes for React Application (DraftJS Based)\n\n![Stickies](http://i.giphy.com/j4U83Mnt5BW7u.gif)\n> Screencast of stickies\n\n## Installation\n\nInstall the React-Stickies [package](https://www.npmjs.org/package/react-stickies) package using [npm](https://www.npmjs.com/):\n\n```bash\nnpm install react-stickies --save\n```\n\nMake sure you have included draftjs styles in your app.\n\n```html\n<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/draft-js/0.7.0/Draft.min.css">\n```\n\n## Features\n\n* Pure React Sticky Notes\n* Draggable & Resizable Stickies\n* Inline Content Editable\n* Configurable Sticky Colors\n* Last Updated TimeStamp\n* Configurable Tape\n\n## Usage\n\n```javascript\nimport React, { Component } from \'react\';\nimport ReactStickies from \'react-stickies\'; //ES6\n\nclass MyFirstStickyNotes extends Component {\n  render() {\n    constructor(props) {\n      super(props);\n      this.state = {\n        notes: []\n      }\n      this.onChange = this.onChange.bind(this)\n      this.onSave = this.onSave.bind(this)\n    }  \n    onSave () {\n      // Make sure to delete the editorState before saving to backend\n      const notes = this.state.notes;\n      notes.map(note => {\n        delete note.editorState;\n      })\n      // Make service call to save notes\n      // Code goes here...\n    }\n    onChange (notes) {\n      this.setState({ // Update the notes state\n        notes\n      })\n    }\n    return (\n      <ReactStickies\n        notes={this.state.notes}\n        onChange={this.onChange}\n      />\n    )\n  }\n});\n```\n\n### React Stickies Props\n\n```javascript\n// Tape with sticky note\ntape: ?Boolean = {true|false},\n\n// Display title on header\ntitle: ?Boolean = {true|false},\n\n// Display footer alongside updated timestamp\nfooter: ?Boolean = {true|false},\n\n// Configurable custom sticky notes colors\ncolors: ?Array = [HexCodes],\n\n// Grid configuration\ngrid: ?Object = {\n  // These are all in grid units, not pixels\n  w: number,\n  h: number,\n  minW: ?number = 0,\n  maxW: ?number = Infinity,\n  minH: ?number = 0,\n  maxH: ?number = Infinity,\n\n  // Rows have a static height, but you can change this based on breakpoints\n  // if you like.\n  rowHeight: ?number = 150,\n\n  // {name: pxVal}, e.g. {lg: 1200, md: 996, sm: 768, xs: 480}\n  // Breakpoint names are arbitrary but must match in the cols and layouts objects.\n  breakpoints: ?Object = {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0},\n\n  // # of cols. This is a breakpoint -> cols map, e.g. {lg: 12, md: 10, ...}\n  cols: ?Object = {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2},\n\n  // layouts is an object mapping breakpoints to layouts.\n  // e.g. {lg: Layout, md: Layout, ...}\n  layouts: {[key: $Keys<breakpoints>]: Layout}\n\n  // Layout is an array of object with the format:\n  // {x: number, y: number, w: number, h: number}\n  // The index into the layout must match the key used on each item component.\n  // If you choose to use custom keys, you can specify that key in the layout\n  // array objects like so:\n  // {i: string, x: number, y: number, w: number, h: number}\n  layout: ?array = null, // If not provided, use data-grid props on children\n  //\n  // Flags\n  //\n  isDraggable: ?boolean = true,\n  isResizable: ?boolean = true,\n  // Uses CSS3 translate() instead of position top/left.\n  // This makes about 6x faster paint performance\n  useCSSTransforms: ?boolean = true,\n\n  // Callback so you can save the layout.\n  // Calls back with (currentLayout) after every drag or resize stop.\n  onLayoutChange: (layout: Layout) => void,\n\n}\n\n\n//\n// Callbacks\n//\n\n// Callback so you can save the notes.\n// Calls back when note is updated\nonChange: (Array | notes, String | state (add/update/delete) )\nonTitleChange: (String | text, Object | note)\nonAdd: (Object | note)\nonDelete: (Object | note)\n\n//\n// Styles\n//\n\n// Styles which could be modified\nwrapperStyle: (Object | {} )\nnoteStyle: (Object | {} )\nnoteStyle: (Object | {} )\nnoteHeaderStyle: (Object | {} )\nnoteBodyStyle: (Object | {} )\nnoteFooterStyle: (Object | {} )\n\n```\n\n\n## Contribute\n\nIf you have a feature request, please add it as an issue or make a pull request.\n\n## TODO List\n\n- [x] Basic Notes with CRUD\n- [x] Draggable Notes\n- [x] Update Notes state\n- [x] Notes position handling\n- [x] Resizable handles on corners\n- [ ] ---- \n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'a15b72aee85c93c65d8e85f7ce129761b51b7639',
+21 silly publish   bugs: { url: 'https://github.com/ajainvivek/react-stickies/issues' },
+21 silly publish   homepage: 'https://github.com/ajainvivek/react-stickies#readme',
+21 silly publish   _id: 'react-stickies@0.0.12',
+21 silly publish   _shasum: '6c4cbf51343b4e4060b954ff18003d2b712f7e43',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name react-stickies
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'react-stickies',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'react-stickies',
+26 silly mapToRegistry   name: 'react-stickies',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/react-stickies
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /Users/ajainvivek/.npm/react-stickies/0.0.12/package.tgz
+30 verbose request uri https://registry.npmjs.org/react-stickies
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 11:02:47 AM
+33 verbose request using bearer token for auth
+34 verbose request id d6fd2f70a39a074d
+35 http request PUT https://registry.npmjs.org/react-stickies
+36 http 403 https://registry.npmjs.org/react-stickies
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '96',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Wed, 22 Feb 2017 00:02:48 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-bne7723-BNE',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1487721767.424215,VS0,VE1360',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating /Users/ajainvivek/.npm/registry.npmjs.org/react-stickies on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 0.0.12." : react-stickies
+40 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+40 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+40 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:187:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1048:10)
+40 verbose stack     at emitOne (events.js:96:13)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:969:12)
+41 verbose statusCode 403
+42 verbose pkgid react-stickies
+43 verbose cwd /Users/ajainvivek/Dev/Experiments/react-stickies
+44 error Darwin 16.3.0
+45 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+46 error node v7.3.0
+47 error npm  v3.10.10
+48 error code E403
+49 error "You cannot publish over the previously published version 0.0.12." : react-stickies
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
