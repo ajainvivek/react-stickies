@@ -203,8 +203,10 @@ export default class extends Component {
       display: this.props.footer === false ? 'none' : 'block'
     }, this.props.noteFooterStyle || {});
     const i = note.grid.add ? '+' : note.grid.i;
+    const grid = note.grid;
+    grid.y = grid.y || Infinity;
     return (
-      <div key={i} data-grid={note.grid}>
+      <div key={i} data-grid={grid}>
         <aside
           className={`note-wrap note ${this.props.tape ? 'tape' : ''}`}
           style={noteStyle}
