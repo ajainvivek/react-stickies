@@ -258,7 +258,12 @@ export default class extends Component {
             className="note-footer"
             style={noteFooterStyle}
           >
-            {note.timeStamp}
+            <div className="footer-left" >
+              <a href={note.link} target={'_blank'}>
+                <span>ツイート</span>
+              </a>
+            </div>
+            <div className="footer-right" >{note.timeStamp}</div>
           </div>
         </aside>
       </div>
