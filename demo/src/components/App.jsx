@@ -17,7 +17,7 @@ export default class extends Component {
       notes: [],
       showTape: false,
       showOutput: false,
-      showTitle: true,
+      showTitle: false,
       showFooter: true,
       output: '',
       colors: ['#FFFFFF'],
@@ -78,6 +78,8 @@ export default class extends Component {
           footer={this.state.showFooter}
           onChange={this.onChange}
           wrapperStyle={wrapperStyle}
+          addIcon={'0'}
+          addStyle={{ position: 'absolute', left: '10px', top: '0px', width: '20px', height: '20px' }}
         />
         <div className="config">
           <form>
