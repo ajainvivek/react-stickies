@@ -166,9 +166,17 @@
   bottom: -6px;
   text-align: right;
   width: 100%;
-  left: 0;
+  padding-left: 10px;
   padding-right: 10px;
   font-size: 9px;
+}
+
+.react-stickies-wrapper .note-footer .footer-left {
+  float: left
+}
+
+.react-stickies-wrapper .note-footer .footer-right {
+  float: right;
 }
 
 .react-stickies-wrapper [contenteditable]:focus {
